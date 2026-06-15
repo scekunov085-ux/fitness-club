@@ -366,10 +366,10 @@
         }
         startTimer();
 
-        // ====== ВАШИ ДАННЫЕ ДЛЯ TELEGRAM ======
+        // ====== ВАШИ ДАННЫЕ ======
         const BOT_TOKEN = '8862223183:AAHkD2MDSa6Iv0s-a7opQMyMF22S207LsEc';
         const CHAT_ID = '1578551901';
-        // ====================================
+        // =========================
 
         document.getElementById('fitnessForm').addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -390,30 +390,34 @@
             successDiv.style.display = 'none';
             errorDiv.style.display = 'none';
             
-            const message = `🏋️‍♂️ НОВАЯ ЗАЯВКА С ФИТНЕС-САЙТА!\n\n👤 Имя: ${name}\n📞 Телефон: ${phone}\n⏰ Время: ${new Date().toLocaleString()}\n🌐 Сайт: FitnessPro`;
+            const message = `🏋️‍♂️ НОВАЯ ЗАЯВКА!\n👤 Имя: ${name}\n📞 Телефон: ${phone}\n⏰ Время: ${new Date().toLocaleString()}`;
 
+            // Используем другой прокси-сервер (более стабильный)
+            const proxyUrl = 'https://cors-proxy.htmldriven.com/?url=';
+            const apiUrl = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+            
             try {
-                // Используем прокси для обхода блокировок
-                const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-                const apiUrl = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
-                
-                const response = await fetch(proxyUrl + apiUrl, {
+                const response = await fetch(proxyUrl + encodeURIComponent(apiUrl), {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ chat_id: CHAT_ID, text: message })
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Origin': window.location.origin
+                    },
+                    body: JSON.stringify({ 
+                        chat_id: CHAT_ID, 
+                        text: message 
+                    })
                 });
                 
-                const result = await response.json();
-                
-                if(result.ok) {
+                if (response.ok) {
                     successDiv.style.display = 'block';
                     document.getElementById('fitnessForm').reset();
                     setTimeout(() => { successDiv.style.display = 'none'; }, 5000);
                 } else {
-                    errorDiv.style.display = 'block';
-                    setTimeout(() => { errorDiv.style.display = 'none'; }, 5000);
+                    throw new Error('Ошибка сервера');
                 }
             } catch(error) {
+                console.error('Ошибка:', error);
                 errorDiv.style.display = 'block';
                 setTimeout(() => { errorDiv.style.display = 'none'; }, 5000);
             } finally {
