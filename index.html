@@ -5,274 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fitness Pro | Твоя идеальная форма</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #0A0A0A;
-            color: white;
-        }
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        .fade-up {
-            animation: fadeInUp 0.8s ease forwards;
-        }
-        .delay-1 {
-            animation-delay: 0.2s;
-            opacity: 0;
-        }
-        .delay-2 {
-            animation-delay: 0.4s;
-            opacity: 0;
-        }
-        .delay-3 {
-            animation-delay: 0.6s;
-            opacity: 0;
-        }
-        .header {
-            background: rgba(0,0,0,0.9);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            padding: 15px 0;
-            backdrop-filter: blur(10px);
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        .header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-        }
-        .logo span {
-            color: #FF6B35;
-        }
-        .nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 30px;
-            transition: 0.3s;
-        }
-        .nav a:hover {
-            color: #FF6B35;
-        }
-        .hero {
-            min-height: 100vh;
-            background: linear-gradient(135deg, #0A0A0A 0%, #1A1A2E 100%);
-            display: flex;
-            align-items: center;
-            padding-top: 80px;
-        }
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 20px;
-        }
-        .hero-title span {
-            color: #FF6B35;
-        }
-        .hero-text {
-            font-size: 1.2rem;
-            color: #ccc;
-            margin-bottom: 30px;
-        }
-        .btn {
-            display: inline-block;
-            background: #FF6B35;
-            color: white;
-            padding: 14px 40px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            transition: 0.3s;
-            border: none;
-            cursor: pointer;
-        }
-        .btn:hover {
-            background: #ff5722;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(255,107,53,0.3);
-        }
-        .hero-image img {
-            width: 100%;
-            border-radius: 20px;
-        }
-        .counter-section {
-            background: #1A1A2E;
-            padding: 60px 0;
-            text-align: center;
-        }
-        .counter-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-        .counter-box {
-            background: #0A0A0A;
-            padding: 30px;
-            border-radius: 20px;
-        }
-        .counter-number {
-            font-size: 3rem;
-            font-weight: 800;
-            color: #FF6B35;
-        }
-        .features {
-            padding: 80px 0;
-        }
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-        }
-        .section-title span {
-            color: #FF6B35;
-        }
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-        .feature-card {
-            background: #1A1A2E;
-            padding: 30px;
-            border-radius: 20px;
-            text-align: center;
-            transition: 0.3s;
-        }
-        .feature-card:hover {
-            transform: translateY(-10px);
-        }
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-        .timer-section {
-            background: linear-gradient(135deg, #FF6B35, #ff5722);
-            padding: 60px 0;
-            text-align: center;
-        }
-        .timer-box {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-            margin-top: 30px;
-        }
-        .timer-item {
-            background: rgba(0,0,0,0.3);
-            padding: 20px;
-            border-radius: 15px;
-            min-width: 100px;
-        }
-        .timer-number {
-            font-size: 3rem;
-            font-weight: 800;
-        }
-        .form-section {
-            padding: 80px 0;
-            background: #1A1A2E;
-        }
-        .form-box {
-            max-width: 500px;
-            margin: 0 auto;
-            background: #0A0A0A;
-            padding: 40px;
-            border-radius: 20px;
-        }
-        .form-box input {
-            width: 100%;
-            padding: 14px;
-            margin: 10px 0;
-            border-radius: 10px;
-            border: none;
-            background: #2A2A3E;
-            color: white;
-        }
-        .form-box input::placeholder {
-            color: #888;
-        }
-        .success-message {
-            display: none;
-            background: #4CAF50;
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 20px;
-            text-align: center;
-        }
-        .error-message {
-            display: none;
-            background: #f44336;
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 20px;
-            text-align: center;
-        }
-        .map-section {
-            padding: 80px 0;
-        }
-        .map {
-            border-radius: 20px;
-            overflow: hidden;
-            height: 400px;
-        }
-        .map iframe {
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-        .footer {
-            background: #0A0A0A;
-            text-align: center;
-            padding: 40px;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0A0A0A; color: white; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-up { animation: fadeInUp 0.8s ease forwards; }
+        .delay-1 { animation-delay: 0.2s; opacity: 0; }
+        .delay-2 { animation-delay: 0.4s; opacity: 0; }
+        .delay-3 { animation-delay: 0.6s; opacity: 0; }
+        .header { background: rgba(0,0,0,0.9); position: fixed; width: 100%; top: 0; z-index: 1000; padding: 15px 0; backdrop-filter: blur(10px); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .header .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .logo { font-size: 1.8rem; font-weight: bold; }
+        .logo span { color: #FF6B35; }
+        .nav a { color: white; text-decoration: none; margin-left: 30px; transition: 0.3s; }
+        .nav a:hover { color: #FF6B35; }
+        .hero { min-height: 100vh; background: linear-gradient(135deg, #0A0A0A 0%, #1A1A2E 100%); display: flex; align-items: center; padding-top: 80px; }
+        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+        .hero-title { font-size: 3.5rem; font-weight: 800; line-height: 1.2; margin-bottom: 20px; }
+        .hero-title span { color: #FF6B35; }
+        .hero-text { font-size: 1.2rem; color: #ccc; margin-bottom: 30px; }
+        .btn { display: inline-block; background: #FF6B35; color: white; padding: 14px 40px; text-decoration: none; border-radius: 50px; font-weight: bold; transition: 0.3s; border: none; cursor: pointer; }
+        .btn:hover { background: #ff5722; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(255,107,53,0.3); }
+        .hero-image img { width: 100%; border-radius: 20px; }
+        .counter-section { background: #1A1A2E; padding: 60px 0; text-align: center; }
+        .counter-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .counter-box { background: #0A0A0A; padding: 30px; border-radius: 20px; }
+        .counter-number { font-size: 3rem; font-weight: 800; color: #FF6B35; }
+        .features { padding: 80px 0; }
+        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 50px; }
+        .section-title span { color: #FF6B35; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .feature-card { background: #1A1A2E; padding: 30px; border-radius: 20px; text-align: center; transition: 0.3s; }
+        .feature-card:hover { transform: translateY(-10px); }
+        .feature-icon { font-size: 3rem; margin-bottom: 20px; }
+        .timer-section { background: linear-gradient(135deg, #FF6B35, #ff5722); padding: 60px 0; text-align: center; }
+        .timer-box { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 30px; }
+        .timer-item { background: rgba(0,0,0,0.3); padding: 20px; border-radius: 15px; min-width: 100px; }
+        .timer-number { font-size: 3rem; font-weight: 800; }
+        .form-section { padding: 80px 0; background: #1A1A2E; }
+        .form-box { max-width: 500px; margin: 0 auto; background: #0A0A0A; padding: 40px; border-radius: 20px; text-align: center; }
+        .form-box p { margin-bottom: 20px; color: #ccc; }
+        .map-section { padding: 80px 0; }
+        .map { border-radius: 20px; overflow: hidden; height: 400px; }
+        .map iframe { width: 100%; height: 100%; border: 0; }
+        .footer { background: #0A0A0A; text-align: center; padding: 40px; }
         @media (max-width: 768px) {
-            .hero-grid {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            .hero-title {
-                font-size: 2rem;
-            }
-            .counter-grid {
-                grid-template-columns: 1fr;
-            }
-            .timer-box {
-                gap: 15px;
-            }
-            .timer-item {
-                min-width: 70px;
-            }
-            .timer-number {
-                font-size: 2rem;
-            }
+            .hero-grid { grid-template-columns: 1fr; text-align: center; }
+            .hero-title { font-size: 2rem; }
+            .counter-grid { grid-template-columns: 1fr; }
+            .timer-box { gap: 15px; }
+            .timer-item { min-width: 70px; }
+            .timer-number { font-size: 2rem; }
         }
     </style>
 </head>
@@ -307,18 +90,9 @@
     <section class="counter-section">
         <div class="container">
             <div class="counter-grid">
-                <div class="counter-box">
-                    <div class="counter-number">500+</div>
-                    <p>Довольных клиентов</p>
-                </div>
-                <div class="counter-box">
-                    <div class="counter-number">20+</div>
-                    <p>Профессиональных тренеров</p>
-                </div>
-                <div class="counter-box">
-                    <div class="counter-number">3000м²</div>
-                    <p>Площадь зала</p>
-                </div>
+                <div class="counter-box"><div class="counter-number">500+</div><p>Довольных клиентов</p></div>
+                <div class="counter-box"><div class="counter-number">20+</div><p>Профессиональных тренеров</p></div>
+                <div class="counter-box"><div class="counter-number">3000м²</div><p>Площадь зала</p></div>
             </div>
         </div>
     </section>
@@ -327,26 +101,10 @@
         <div class="container">
             <h2 class="section-title">Почему выбирают <span>FitnessPro</span></h2>
             <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">💪</div>
-                    <h3>Современное оборудование</h3>
-                    <p>Новейшие тренажёры от мировых брендов</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🥗</div>
-                    <h3>Фитнес-бар</h3>
-                    <p>Правильное питание и протеиновые коктейли</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🧘</div>
-                    <h3>Групповые занятия</h3>
-                    <p>Йога, пилатес, кроссфит, зумба</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <h3>Индивидуальный подход</h3>
-                    <p>Программа тренировок под твои цели</p>
-                </div>
+                <div class="feature-card"><div class="feature-icon">💪</div><h3>Современное оборудование</h3><p>Новейшие тренажёры от мировых брендов</p></div>
+                <div class="feature-card"><div class="feature-icon">🥗</div><h3>Фитнес-бар</h3><p>Правильное питание и протеиновые коктейли</p></div>
+                <div class="feature-card"><div class="feature-icon">🧘</div><h3>Групповые занятия</h3><p>Йога, пилатес, кроссфит, зумба</p></div>
+                <div class="feature-card"><div class="feature-icon">🎯</div><h3>Индивидуальный подход</h3><p>Программа тренировок под твои цели</p></div>
             </div>
         </div>
     </section>
@@ -356,22 +114,10 @@
             <h2>🔥 Успей записаться по акции</h2>
             <p>Скидка 30% на первый месяц до окончания акции:</p>
             <div class="timer-box">
-                <div class="timer-item">
-                    <div class="timer-number" id="days">00</div>
-                    <div>Дней</div>
-                </div>
-                <div class="timer-item">
-                    <div class="timer-number" id="hours">00</div>
-                    <div>Часов</div>
-                </div>
-                <div class="timer-item">
-                    <div class="timer-number" id="minutes">00</div>
-                    <div>Минут</div>
-                </div>
-                <div class="timer-item">
-                    <div class="timer-number" id="seconds">00</div>
-                    <div>Секунд</div>
-                </div>
+                <div class="timer-item"><div class="timer-number" id="days">00</div><div>Дней</div></div>
+                <div class="timer-item"><div class="timer-number" id="hours">00</div><div>Часов</div></div>
+                <div class="timer-item"><div class="timer-number" id="minutes">00</div><div>Минут</div></div>
+                <div class="timer-item"><div class="timer-number" id="seconds">00</div><div>Секунд</div></div>
             </div>
         </div>
     </section>
@@ -379,22 +125,10 @@
     <section id="form" class="form-section">
         <div class="container">
             <div class="form-box">
-                <h2 style="text-align:center; margin-bottom:30px;">Записаться на тренировку</h2>
-                
-                <!-- ФОРМА ОТПРАВКИ НА EMAIL -->
-                <form id="fitnessForm" action="https://formsubmit.co/scekunov085@gmail.com" method="POST">
-                    <!-- Скрытые поля для настройки -->
-                    <input type="hidden" name="_subject" value="🏋️‍♂️ НОВАЯ ЗАЯВКА С FITNESSPRO">
-                    <input type="hidden" name="_template" value="table">
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_next" value="https://scekunov085-ux.github.io/fitness-club/?success=true">
-                    
-                    <input type="text" name="Имя" placeholder="Ваше имя" required>
-                    <input type="tel" name="Телефон" placeholder="Телефон" required>
-                    <button type="submit" class="btn" style="width:100%;" id="submitBtn">Отправить заявку</button>
-                </form>
-                
-                <div id="successMessage" class="success-message">✅ Заявка отправлена! Мы перезвоним вам через 5 минут.</div>
+                <h2 style="margin-bottom:20px;">Записаться на тренировку</h2>
+                <p>📋 Нажмите на кнопку ниже, чтобы заполнить форму заявки</p>
+                <p style="font-size:14px; margin:20px 0;">Это откроет безопасную форму Яндекса — ваши данные будут отправлены нам на почту</p>
+                <a href="https://forms.yandex.ru/u/6a2ffaba505690003318eea4/" target="_blank" class="btn" style="display:inline-block;">📝 Заполнить форму</a>
             </div>
         </div>
     </section>
@@ -416,12 +150,10 @@
     </div>
 
     <script>
-        // Таймер обратного отсчета (7 дней)
         function startTimer() {
             const targetDate = new Date();
             targetDate.setDate(targetDate.getDate() + 7);
             targetDate.setHours(23, 59, 59, 999);
-            
             function updateTimer() {
                 const now = new Date();
                 const diff = targetDate - now;
@@ -445,17 +177,6 @@
             setInterval(updateTimer, 1000);
         }
         startTimer();
-
-        // Показываем сообщение об успехе после отправки
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('success') === 'true') {
-            document.getElementById('successMessage').style.display = 'block';
-            setTimeout(() => {
-                document.getElementById('successMessage').style.display = 'none';
-                // Убираем параметр из URL
-                window.history.replaceState({}, document.title, window.location.pathname);
-            }, 5000);
-        }
     </script>
 </body>
 </html>
